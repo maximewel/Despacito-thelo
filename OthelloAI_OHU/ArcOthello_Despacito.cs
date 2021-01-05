@@ -16,37 +16,17 @@ namespace OthelloAI_Despacito
 
     public class OthelloBoard_Despacito : IPlayable.IPlayable
     {
-        const int BOARDSIZE_X = 9;
-        const int BOARDSIZE_Y = 7;
+        const int BOARDSIZE_X = 9, BOARDSIZE_Y = 7;
 
         int[,] gameBoard = new int[BOARDSIZE_X, BOARDSIZE_Y];
         int whiteScore = 0;
         int blackScore = 0;
+        private bool isPlayerWhite;
         public bool GameFinish { get; set; }
-
-        private Random rnd = new Random();
 
         public OthelloBoard_Despacito()
         {
             InitBoard();
-        }
-
-
-        public void DrawBoard()
-        {
-            Console.WriteLine("REFERENCE" + "\tBLACK [X]:" + blackScore + "\tWHITE [O]:" + whiteScore);
-            Console.WriteLine("  A B C D E F G H I");
-            for (int line = 0; line < BOARDSIZE_Y; line++)
-            {
-                Console.Write($"{(line + 1)}");
-                for (int col = 0; col < BOARDSIZE_X; col++)
-                {
-                    Console.Write((gameBoard[col, line] == (int)TileState.EMPTY) ? " -" : (gameBoard[col, line] == (int)TileState.WHITE) ? " O" : " X");
-                }
-                Console.Write("\n");
-            }
-            Console.WriteLine();
-            Console.WriteLine();
         }
 
         /// <summary>
@@ -59,7 +39,7 @@ namespace OthelloAI_Despacito
         /// <returns></returns>
         public int[,] GetBoard()
         {
-            return (int[,])gameBoard;
+            return gameBoard;
         }
 
         #region MinMax
@@ -69,32 +49,33 @@ namespace OthelloAI_Despacito
          */
         private (int, (int, int)?) MinMax(int[,] field, int depth, int minOrMax, int parentValue, bool isWhite)
         {
-            //stopping conditions
-            if(depth == 0 || IsFinished(isWhite, field))
-                return (Heuristic(field, isWhite), null);
+            //get possible moves for this field
+            var moves = GetPossibleMove(isWhite, field);
 
+            //stopping conditions : no move possible, depth is 0
+            if (depth == 0 || moves.Count <= 0)
+                return (Heuristic(field, isPlayerWhite), null);
+
+            //init optimal values kept in memory for alpha-beta and min-max algorithm
             int optimalValue = int.MinValue * minOrMax;
             (int, int)? optimalMove = null;
 
-            Console.WriteLine($"Searching best move whith max = {minOrMax} at dept {depth}...");
             //Iterate over each possible move for that field
-            foreach(var move in this.GetPossibleMove(isWhite, field))
+            foreach (var move in moves)
             {
                 //Create an identical field
                 int[,] playedField = (int[,]) field.Clone();
                 //Play the move on this field
-                this.PlayMove(move, isWhite, playedField);
+                PlayMove(move, isWhite, playedField);
                 var result = MinMax(playedField, depth-1, -minOrMax, optimalValue, !isWhite);
                 int val = result.Item1; 
-                Console.WriteLine($"found value : {val}");
                 if (val * minOrMax > optimalValue * minOrMax)
                 {
-                    Console.WriteLine($"kept value as best");
                     optimalValue = val;
                     optimalMove = move;
                     //Pruning of the tree
-                    if (optimalValue * minOrMax > parentValue * minOrMax) { }
-                        //break;
+                    if (optimalValue * minOrMax > parentValue * minOrMax)
+                        break;
                 }
             }
             return (optimalValue, optimalMove);
@@ -105,13 +86,31 @@ namespace OthelloAI_Despacito
          */
         private int Heuristic(int[,] field, bool isWhite)
         {
-            return CountPions(field, isWhite);
+            return CountPions(field, isWhite)
+                + HeuristicCorners(field, isWhite)
+                + HeuristicBorders(field, isWhite)
+                + HeuristicMobility(field, isWhite);
+        }
+
+        private int HeuristicCorners(int[,] field, bool isWhite)
+        {
+            return 0;
+        }
+
+        private int HeuristicBorders(int[,] field, bool isWhite)
+        {
+            return 0;
+        }
+
+        private int HeuristicMobility(int[,] field, bool isWhite)
+        {
+            return 0;
         }
 
         private int CountPions(int[,] field, bool isWhite)
         {
             TileState player = isWhite ? TileState.WHITE : TileState.BLACK;
-            TileState opponent = !isWhite ? TileState.WHITE : TileState.BLACK;
+            TileState opponent = isWhite ? TileState.BLACK : TileState.WHITE;
             int count = 0;
             foreach(var elem in field)
             {
@@ -121,15 +120,6 @@ namespace OthelloAI_Despacito
                     count--;
             }
             return count;
-        }
-
-        /**
-         * Return wether a field is still playable or not
-         */
-        private bool IsFinished(bool isWhite, int[,] field)
-        {
-            //TODO
-            return GetPossibleMove(isWhite, field).Count <= 0;
         }
 
         #endregion
@@ -148,14 +138,13 @@ namespace OthelloAI_Despacito
         /// <returns>The move it will play, will return {P,0} if it has to PASS its turn (no move is possible)</returns>
         public Tuple<int, int> GetNextMove(int[,] game, int level, bool whiteTurn)
         {
-            (int, (int,int)?) results = MinMax(gameBoard, 3, 1, int.MaxValue, whiteTurn);
+            isPlayerWhite = whiteTurn;
+            (int, (int,int)?) results = MinMax(gameBoard, level, 1, int.MaxValue, whiteTurn);
             (int, int)? move = results.Item2;
             if (move.HasValue)
-            {
-                Console.WriteLine($"Found optimal value {results.Item1} with move {move.Value}");
                 return Tuple.Create(move.Value.Item1, move.Value.Item2);
-            }  else
-                return Tuple.Create(-1, -1);
+            //no value : Pass turn
+            return Tuple.Create(-1, -1);
         }
 
         public bool PlayMove((int, int) move, bool isWhite, int[,] field)
@@ -216,8 +205,6 @@ namespace OthelloAI_Despacito
                     field[c, l] = (int)ownColor;
                 }
             }
-            //Console.WriteLine("CATCH DIRECTIONS:" + catchDirections.Count);
-            ComputeScore();
             return playable;
         }
 
@@ -281,53 +268,8 @@ namespace OthelloAI_Despacito
 
         public bool IsPlayable(int column, int line, bool isWhite)
         {
-            return this.IsPlayable((column, line), isWhite, gameBoard);
+            return IsPlayable((column, line), isWhite, gameBoard);
         }
-
-       
-        public int GetFlipNumber(int column, int line, bool isWhite)
-        {
-            if (gameBoard[column, line] != (int)TileState.EMPTY)
-                return 0;
-            TileState opponent = isWhite ? TileState.BLACK : TileState.WHITE;
-            TileState ownColor = (!isWhite) ? TileState.BLACK : TileState.WHITE;
-            int c = column, l = line;
-            bool playable = false;
-            int counter = 0;
-            List<Tuple<int, int, int>> catchDirections = new List<Tuple<int, int, int>>();
-            for (int dLine = -1; dLine <= 1; dLine++)
-            {
-                for (int dCol = -1; dCol <= 1; dCol++)
-                {
-                    c = column + dCol;
-                    l = line + dLine;
-                    if ((c < BOARDSIZE_X) && (c >= 0) && (l < BOARDSIZE_Y) && (l >= 0)
-                        && (gameBoard[c, l] == (int)opponent))
-                    // Verify if there is a friendly tile to "pinch" and return ennemy tiles in this direction
-                    {
-                        counter = 0;
-                        while (((c + dCol) < BOARDSIZE_X) && (c + dCol >= 0) &&
-                                  ((l + dLine) < BOARDSIZE_Y) && ((l + dLine >= 0)))
-                        {
-                            c += dCol;
-                            l += dLine;
-                            counter++;
-                            if (gameBoard[c, l] == (int)ownColor)
-                            {
-                                playable = true;
-                                break;
-                            }
-                            else if (gameBoard[c, l] == (int)opponent)
-                                continue;
-                            else if (gameBoard[c, l] == (int)TileState.EMPTY)
-                                break;  //empty slot ends the search
-                        }
-                    }
-                }
-            }
-            return playable ? counter : 0;
-        }
-
         #endregion
 
 
@@ -362,24 +304,8 @@ namespace OthelloAI_Despacito
             gameBoard[4, 4] = (int)TileState.WHITE;
             gameBoard[3, 4] = (int)TileState.BLACK;
             gameBoard[4, 3] = (int)TileState.BLACK;
-
-            ComputeScore();
         }
 
-        private void ComputeScore()
-        {
-            whiteScore = 0;
-            blackScore = 0;
-            foreach (var v in gameBoard)
-            {
-                if (v == (int)TileState.WHITE)
-                    whiteScore++;
-                else if (v == (int)TileState.BLACK)
-                    blackScore++;
-            }
-            GameFinish = ((whiteScore == 0) || (blackScore == 0) ||
-                        (whiteScore + blackScore == 63));
-        }
     }
 
 }

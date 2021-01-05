@@ -16,3 +16,10 @@ C:\Temp\DOTNET_OTHELLO\TournamentApp\obj\Release\Othello.Properties.Resources.re
 C:\Temp\DOTNET_OTHELLO\TournamentApp\obj\Release\Othello.csproj.GenerateResource.Cache
 C:\Temp\DOTNET_OTHELLO\TournamentApp\obj\Release\Othello.exe
 C:\Temp\DOTNET_OTHELLO\TournamentApp\obj\Release\Othello.pdb
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\obj\Release\Othello.csprojAssemblyReference.cache
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\obj\Release\MainWindow.g.cs
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\obj\Release\App.g.cs
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\obj\Release\Othello_MarkupCompile.cache
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\obj\Release\Othello_MarkupCompile.lref
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\obj\Release\Othello.exe
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\obj\Release\Othello.pdb
