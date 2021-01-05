@@ -17,12 +17,19 @@ namespace OthelloAI_Despacito
     public class OthelloBoard_Despacito : IPlayable.IPlayable
     {
         const int BOARDSIZE_X = 9, BOARDSIZE_Y = 7;
-
         int[,] gameBoard = new int[BOARDSIZE_X, BOARDSIZE_Y];
         int whiteScore = 0;
         int blackScore = 0;
         private bool isPlayerWhite;
         public bool GameFinish { get; set; }
+
+        public int[,] weightedBoard = { {6,-4, 2, 2, 2, 2, 2, -4, 6},
+                                        {-4,-6,-1,-1,-1,-1,-1,-6, -4},
+                                        {2,-1, 1, 0, 0, 1, 2, -1, 2},
+                                        {2,-1, 0, 1, 1, -1, 2, -1, 2},
+                                        {2,-1, 0, 1, 1, -1, 2, -1, 2},
+                                        {-4,-6,-1,-1,-1,-1,-1,-6,-4},
+                                        {6,-4, 2, 2, 2, 2, 2, -4, 6}};
 
         public OthelloBoard_Despacito()
         {
@@ -54,7 +61,7 @@ namespace OthelloAI_Despacito
 
             //stopping conditions : no move possible, depth is 0
             if (depth == 0 || moves.Count <= 0)
-                return (Heuristic(field, isPlayerWhite), null);
+                return (Heuristic(field, isPlayerWhite, moves), null);
 
             //init optimal values kept in memory for alpha-beta and min-max algorithm
             int optimalValue = int.MinValue * minOrMax;
@@ -84,42 +91,74 @@ namespace OthelloAI_Despacito
         /**
          * Evaluate the given field
          */
-        private int Heuristic(int[,] field, bool isWhite)
+        private int Heuristic(int[,] field, bool isWhite, List<(int, int)> moves)
         {
-            return CountPions(field, isWhite)
-                + HeuristicCorners(field, isWhite)
-                + HeuristicBorders(field, isWhite)
-                + HeuristicMobility(field, isWhite);
+            return HeuristicStaticWeightedBoard(field); ;
         }
 
-        private int HeuristicCorners(int[,] field, bool isWhite)
+        private int HeuristicCorners(int[,] field)
+        {
+            int rows = field.GetLength(0)-1;
+            int cols = field.GetLength(1)-1;
+            int[] vals =  {0, 0, 0};
+
+            vals[field[0, 0] + 1]++;
+            vals[field[rows, 0] + 1]++;
+            vals[field[0, cols] + 1]++;
+            vals[field[rows, cols] + 1]++;
+
+            int maxPlayer = isPlayerWhite ? vals[(int)TileState.WHITE+1] : vals[(int)TileState.BLACK+1];
+            int minPlayer = !isPlayerWhite ? vals[(int)TileState.WHITE+1] : vals[(int)TileState.BLACK+1];
+
+            if ((maxPlayer + minPlayer) == 0) return 0;
+            return 100 * (maxPlayer - minPlayer) / (maxPlayer + minPlayer);
+        }
+
+        private int HeuristicBorders(int[,] field)
         {
             return 0;
         }
 
-        private int HeuristicBorders(int[,] field, bool isWhite)
+        private int HeuristicStaticWeightedBoard(int[,] field)
         {
-            return 0;
+            int sum = 0;
+            int[] vals = { 0, -1, 1};
+
+            for (int x = 0; x < field.GetLength(0); x++)
+            {
+                for (int y = 0; y < field.GetLength(1); y++)
+                {
+                    sum += weightedBoard[y, x] * vals[field[x, y]+1];
+                }
+            }
+
+            return sum;;
         }
 
-        private int HeuristicMobility(int[,] field, bool isWhite)
+        private int HeuristicMobility(int[,] field, List<(int, int)> moves)
         {
-            return 0;
+            int maxPlayer = moves.Count;
+            int minPlayer = GetPossibleMove(!isPlayerWhite, field).Count;
+            if ((maxPlayer + minPlayer) == 0) return 0;
+            return 100 * (maxPlayer - minPlayer) / (maxPlayer + minPlayer);
         }
 
-        private int CountPions(int[,] field, bool isWhite)
+        private int CountParity(int[,] field)
         {
-            TileState player = isWhite ? TileState.WHITE : TileState.BLACK;
-            TileState opponent = isWhite ? TileState.BLACK : TileState.WHITE;
-            int count = 0;
+            int player = isPlayerWhite ? (int)TileState.WHITE : (int)TileState.BLACK;
+            int opponent = isPlayerWhite ? (int)TileState.BLACK : (int)TileState.WHITE;
+            int maxPlayer = 0;
+            int minPlayer = 0;
+
             foreach(var elem in field)
             {
-                if (elem == (int)player)
-                    count++;
-                else if (elem == (int)opponent)
-                    count--;
+                if (elem == player)
+                    maxPlayer++;
+                else if (elem == opponent)
+                    minPlayer++;
             }
-            return count;
+            if ((maxPlayer + minPlayer) == 0) return 0;
+            return 100*(maxPlayer-minPlayer)/(maxPlayer+minPlayer);
         }
 
         #endregion
@@ -127,7 +166,7 @@ namespace OthelloAI_Despacito
         #region IPlayable
         public int GetWhiteScore() { return whiteScore; }
         public int GetBlackScore() { return blackScore; }
-        public string GetName() { return "🎵🤘🎸🌮🌮Despacito'thello🌮🌮🎸🤘🎵"; }
+        public string GetName() { return "🎵🤘🎸🌮🌮Despacito'thello2🌮🌮🎸🤘🎵"; }
 
         /// <summary>
         /// Maximizes the number of flipped slots at each move
