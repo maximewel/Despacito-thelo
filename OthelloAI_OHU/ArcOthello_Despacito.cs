@@ -26,8 +26,8 @@ namespace OthelloAI_Despacito
         public int[,] weightedBoard = { {6,-4, 2, 2, 2, 2, 2, -4, 6},
                                         {-4,-6,-1,-1,-1,-1,-1,-6, -4},
                                         {2,-1, 1, 0, 0, 1, 2, -1, 2},
-                                        {2,-1, 0, 1, 1, -1, 2, -1, 2},
-                                        {2,-1, 0, 1, 1, -1, 2, -1, 2},
+                                        {2,-1, 0, 1, 1, 0, 2, -1, 2},
+                                        {2,-1, 0, 1, 1, 0, 2, -1, 2},
                                         {-4,-6,-1,-1,-1,-1,-1,-6,-4},
                                         {6,-4, 2, 2, 2, 2, 2, -4, 6}};
 
@@ -93,7 +93,7 @@ namespace OthelloAI_Despacito
          */
         private int Heuristic(int[,] field, bool isWhite, List<(int, int)> moves)
         {
-            return HeuristicStaticWeightedBoard(field); ;
+            return HeuristicStaticWeightedBoard(field);
         }
 
         private int HeuristicCorners(int[,] field)
@@ -122,7 +122,8 @@ namespace OthelloAI_Despacito
         private int HeuristicStaticWeightedBoard(int[,] field)
         {
             int sum = 0;
-            int[] vals = { 0, -1, 1};
+            int sens = isPlayerWhite ? -1 : 1;
+            int[] vals = { 0, -sens, sens};
 
             for (int x = 0; x < field.GetLength(0); x++)
             {
@@ -132,7 +133,7 @@ namespace OthelloAI_Despacito
                 }
             }
 
-            return sum;;
+            return sum;
         }
 
         private int HeuristicMobility(int[,] field, List<(int, int)> moves)
