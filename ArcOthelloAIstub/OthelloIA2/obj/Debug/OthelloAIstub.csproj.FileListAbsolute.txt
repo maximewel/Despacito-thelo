@@ -1,0 +1,31 @@
+C:\DEV\DOTNET\Othello\OthelloConsole_7x9\OthelloIA2\OthelloIA2\bin\Debug\OthelloAIstub.dll
+C:\DEV\DOTNET\Othello\OthelloConsole_7x9\OthelloIA2\OthelloIA2\bin\Debug\OthelloAIstub.pdb
+C:\DEV\DOTNET\Othello\OthelloConsole_7x9\OthelloIA2\OthelloIA2\bin\Debug\IPlayable.dll
+C:\DEV\DOTNET\Othello\OthelloConsole_7x9\OthelloIA2\OthelloIA2\bin\Debug\IPlayable.pdb
+C:\DEV\DOTNET\Othello\OthelloConsole_7x9\OthelloIA2\OthelloIA2\obj\Debug\OthelloAIstub.csproj.CoreCompileInputs.cache
+C:\DEV\DOTNET\Othello\OthelloConsole_7x9\OthelloIA2\OthelloIA2\obj\Debug\OthelloAIstub.csproj.CopyComplete
+C:\DEV\DOTNET\Othello\OthelloConsole_7x9\OthelloIA2\OthelloIA2\obj\Debug\OthelloAIstub.dll
+C:\DEV\DOTNET\Othello\OthelloConsole_7x9\OthelloIA2\OthelloIA2\obj\Debug\OthelloAIstub.pdb
+C:\DEV\DOTNET\Othello\TournamentApp\ArcOthelloAIstub\OthelloIA2\bin\Debug\OthelloAIstub.dll
+C:\DEV\DOTNET\Othello\TournamentApp\ArcOthelloAIstub\OthelloIA2\bin\Debug\OthelloAIstub.pdb
+C:\DEV\DOTNET\Othello\TournamentApp\ArcOthelloAIstub\OthelloIA2\obj\Debug\OthelloAIstub.csprojAssemblyReference.cache
+C:\DEV\DOTNET\Othello\TournamentApp\ArcOthelloAIstub\OthelloIA2\obj\Debug\OthelloAIstub.csproj.CoreCompileInputs.cache
+C:\DEV\DOTNET\Othello\TournamentApp\ArcOthelloAIstub\OthelloIA2\obj\Debug\OthelloAIstub.csproj.CopyComplete
+C:\DEV\DOTNET\Othello\TournamentApp\ArcOthelloAIstub\OthelloIA2\obj\Debug\OthelloAIstub.dll
+C:\DEV\DOTNET\Othello\TournamentApp\ArcOthelloAIstub\OthelloIA2\obj\Debug\OthelloAIstub.pdb
+C:\DEV\DOTNET\Othello\TournamentApp\bin\Debug\OthelloAIstub.dll
+C:\DEV\DOTNET\Othello\TournamentApp\bin\Debug\OthelloAIstub.pdb
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\bin\Debug\OthelloAIstub.dll
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\bin\Debug\OthelloAIstub.pdb
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\ArcOthelloAIstub\OthelloIA2\obj\Debug\OthelloAIstub.csprojAssemblyReference.cache
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\ArcOthelloAIstub\OthelloIA2\obj\Debug\OthelloAIstub.csproj.CoreCompileInputs.cache
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\ArcOthelloAIstub\OthelloIA2\obj\Debug\OthelloAIstub.csproj.CopyComplete
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\ArcOthelloAIstub\OthelloIA2\obj\Debug\OthelloAIstub.dll
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\ArcOthelloAIstub\OthelloIA2\obj\Debug\OthelloAIstub.pdb
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\bin\Debug\OthelloAIstub.dll
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\bin\Debug\OthelloAIstub.pdb
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\ArcOthelloAIstub\OthelloIA2\obj\Debug\OthelloAIstub.csprojAssemblyReference.cache
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\ArcOthelloAIstub\OthelloIA2\obj\Debug\OthelloAIstub.csproj.CoreCompileInputs.cache
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\ArcOthelloAIstub\OthelloIA2\obj\Debug\OthelloAIstub.csproj.CopyComplete
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\ArcOthelloAIstub\OthelloIA2\obj\Debug\OthelloAIstub.dll
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\ArcOthelloAIstub\OthelloIA2\obj\Debug\OthelloAIstub.pdb

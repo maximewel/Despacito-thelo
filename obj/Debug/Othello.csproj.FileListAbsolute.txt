@@ -1,0 +1,108 @@
+C:\Users\aurelie.debrot\Documents\ECOLE\3e\DotNet\Othello-DotNet2\bin\Debug\Othello.exe.config
+C:\Users\aurelie.debrot\Documents\ECOLE\3e\DotNet\Othello-DotNet2\bin\Debug\Othello.exe
+C:\Users\aurelie.debrot\Documents\ECOLE\3e\DotNet\Othello-DotNet2\bin\Debug\Othello.pdb
+C:\Users\aurelie.debrot\Documents\ECOLE\3e\DotNet\Othello-DotNet2\obj\Debug\Othello.csprojResolveAssemblyReference.cache
+C:\Users\aurelie.debrot\Documents\ECOLE\3e\DotNet\Othello-DotNet2\obj\Debug\MainWindow.g.cs
+C:\Users\aurelie.debrot\Documents\ECOLE\3e\DotNet\Othello-DotNet2\obj\Debug\App.g.cs
+C:\Users\aurelie.debrot\Documents\ECOLE\3e\DotNet\Othello-DotNet2\obj\Debug\Othello_MarkupCompile.cache
+C:\Users\aurelie.debrot\Documents\ECOLE\3e\DotNet\Othello-DotNet2\obj\Debug\Othello_MarkupCompile.lref
+C:\Users\aurelie.debrot\Documents\ECOLE\3e\DotNet\Othello-DotNet2\obj\Debug\MainWindow.baml
+C:\Users\aurelie.debrot\Documents\ECOLE\3e\DotNet\Othello-DotNet2\obj\Debug\Othello.g.resources
+C:\Users\aurelie.debrot\Documents\ECOLE\3e\DotNet\Othello-DotNet2\obj\Debug\Othello.Properties.Resources.resources
+C:\Users\aurelie.debrot\Documents\ECOLE\3e\DotNet\Othello-DotNet2\obj\Debug\Othello.csproj.GenerateResource.Cache
+C:\Users\aurelie.debrot\Documents\ECOLE\3e\DotNet\Othello-DotNet2\obj\Debug\Othello.exe
+C:\Users\aurelie.debrot\Documents\ECOLE\3e\DotNet\Othello-DotNet2\obj\Debug\Othello.pdb
+C:\Temp\_DOTNET\Othello\11_Debrot_Ferreira\bin\Debug\Othello.exe.config
+C:\Temp\_DOTNET\Othello\11_Debrot_Ferreira\obj\Debug\Othello.exe
+C:\Temp\_DOTNET\Othello\11_Debrot_Ferreira\obj\Debug\Othello.pdb
+C:\Temp\_DOTNET\Othello\11_Debrot_Ferreira\bin\Debug\Othello.exe
+C:\Temp\_DOTNET\Othello\11_Debrot_Ferreira\bin\Debug\Othello.pdb
+C:\Temp\_DOTNET\Othello\11_Debrot_Ferreira\obj\Debug\Othello.csprojResolveAssemblyReference.cache
+C:\Temp\_DOTNET\Othello\11_Debrot_Ferreira\obj\Debug\MainWindow.g.cs
+C:\Temp\_DOTNET\Othello\11_Debrot_Ferreira\obj\Debug\App.g.cs
+C:\Temp\_DOTNET\Othello\11_Debrot_Ferreira\obj\Debug\Othello_MarkupCompile.cache
+C:\Temp\_DOTNET\Othello\11_Debrot_Ferreira\obj\Debug\Othello_MarkupCompile.lref
+C:\Temp\_DOTNET\Othello\11_Debrot_Ferreira\obj\Debug\MainWindow.baml
+C:\Temp\_DOTNET\Othello\11_Debrot_Ferreira\obj\Debug\Othello.g.resources
+C:\Temp\_DOTNET\Othello\11_Debrot_Ferreira\obj\Debug\Othello.Properties.Resources.resources
+C:\Temp\_DOTNET\Othello\11_Debrot_Ferreira\obj\Debug\Othello.csproj.GenerateResource.Cache
+C:\Temp\DOTNET_OTHELLO\Othello_Projets_Etudiants\11_Debrot_Ferreira\bin\Debug\Othello.exe.config
+C:\Temp\DOTNET_OTHELLO\Othello_Projets_Etudiants\11_Debrot_Ferreira\obj\Debug\Othello.exe
+C:\Temp\DOTNET_OTHELLO\Othello_Projets_Etudiants\11_Debrot_Ferreira\obj\Debug\Othello.pdb
+C:\Temp\DOTNET_OTHELLO\TournamentApp\bin\Debug\Othello.exe.config
+C:\Temp\DOTNET_OTHELLO\TournamentApp\obj\Debug\Othello.exe
+C:\Temp\DOTNET_OTHELLO\TournamentApp\obj\Debug\Othello.pdb
+C:\Temp\DOTNET_OTHELLO\TournamentApp\bin\Debug\Othello.exe
+C:\Temp\DOTNET_OTHELLO\TournamentApp\bin\Debug\Othello.pdb
+C:\Temp\DOTNET_OTHELLO\TournamentApp\obj\Debug\MainWindow.g.cs
+C:\Temp\DOTNET_OTHELLO\TournamentApp\obj\Debug\App.g.cs
+C:\Temp\DOTNET_OTHELLO\TournamentApp\obj\Debug\Othello_MarkupCompile.cache
+C:\Temp\DOTNET_OTHELLO\TournamentApp\obj\Debug\Othello_MarkupCompile.lref
+C:\Temp\DOTNET_OTHELLO\TournamentApp\obj\Debug\MainWindow.baml
+C:\Temp\DOTNET_OTHELLO\TournamentApp\obj\Debug\Othello.g.resources
+C:\Temp\DOTNET_OTHELLO\TournamentApp\obj\Debug\Othello.Properties.Resources.resources
+C:\Temp\DOTNET_OTHELLO\TournamentApp\obj\Debug\Othello.csproj.GenerateResource.Cache
+C:\Temp\DOTNET_OTHELLO\TournamentApp\bin\Debug\IPlayable.dll
+C:\Temp\DOTNET_OTHELLO\TournamentApp\bin\Debug\IPlayable.pdb
+C:\Temp\DOTNET_OTHELLO\TournamentApp\obj\Debug\Othello.csprojResolveAssemblyReference.cache
+C:\Temp\DOTNET_OTHELLO\TournamentApp\bin\Debug\ClassLibrary1.dll
+C:\Temp\DOTNET_OTHELLO\TournamentApp\bin\Debug\ClassLibrary1.pdb
+C:\DEV\DOTNET\Othello\TournamentApp\obj\Debug\Othello.csprojAssemblyReference.cache
+C:\DEV\DOTNET\Othello\TournamentApp\obj\Debug\MainWindow.g.cs
+C:\DEV\DOTNET\Othello\TournamentApp\obj\Debug\App.g.cs
+C:\DEV\DOTNET\Othello\TournamentApp\obj\Debug\Othello_MarkupCompile.cache
+C:\DEV\DOTNET\Othello\TournamentApp\obj\Debug\Othello_MarkupCompile.lref
+C:\DEV\DOTNET\Othello\TournamentApp\obj\Debug\Othello.exe
+C:\DEV\DOTNET\Othello\TournamentApp\obj\Debug\Othello.pdb
+C:\DEV\DOTNET\Othello\TournamentApp\bin\Debug\Othello.exe.config
+C:\DEV\DOTNET\Othello\TournamentApp\bin\Debug\Othello.exe
+C:\DEV\DOTNET\Othello\TournamentApp\bin\Debug\Othello.pdb
+C:\DEV\DOTNET\Othello\TournamentApp\bin\Debug\ArcOthelloRef.dll
+C:\DEV\DOTNET\Othello\TournamentApp\bin\Debug\IPlayable.dll
+C:\DEV\DOTNET\Othello\TournamentApp\bin\Debug\ArcOthelloRef.pdb
+C:\DEV\DOTNET\Othello\TournamentApp\bin\Debug\IPlayable.pdb
+C:\DEV\DOTNET\Othello\TournamentApp\obj\Debug\MainWindow.baml
+C:\DEV\DOTNET\Othello\TournamentApp\obj\Debug\Othello.g.resources
+C:\DEV\DOTNET\Othello\TournamentApp\obj\Debug\Othello.Properties.Resources.resources
+C:\DEV\DOTNET\Othello\TournamentApp\obj\Debug\Othello.csproj.GenerateResource.cache
+C:\DEV\DOTNET\Othello\TournamentApp\obj\Debug\Othello.csproj.CoreCompileInputs.cache
+C:\DEV\DOTNET\Othello\TournamentApp\obj\Debug\Othello.csproj.CopyComplete
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\bin\Debug\Othello.exe.config
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\bin\Debug\Othello.exe
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\bin\Debug\Othello.pdb
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\bin\Debug\ArcOthelloRef.dll
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\bin\Debug\IPlayable.dll
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\bin\Debug\ArcOthelloRef.pdb
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\bin\Debug\IPlayable.pdb
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\obj\Debug\Othello.csprojAssemblyReference.cache
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\obj\Debug\MainWindow.g.cs
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\obj\Debug\App.g.cs
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\obj\Debug\Othello_MarkupCompile.cache
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\obj\Debug\Othello_MarkupCompile.lref
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\obj\Debug\MainWindow.baml
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\obj\Debug\Othello.g.resources
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\obj\Debug\Othello.Properties.Resources.resources
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\obj\Debug\Othello.csproj.GenerateResource.cache
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\obj\Debug\Othello.csproj.CoreCompileInputs.cache
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\obj\Debug\Othello.csproj.CopyComplete
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\obj\Debug\Othello.exe
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\obj\Debug\Othello.pdb
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\bin\Debug\Othello.exe.config
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\bin\Debug\Othello.exe
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\bin\Debug\Othello.pdb
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\bin\Debug\ArcOthelloRef.dll
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\bin\Debug\ArcOthelloRef.pdb
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\bin\Debug\IPlayable.pdb
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\obj\Debug\Othello.csprojAssemblyReference.cache
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\obj\Debug\MainWindow.g.cs
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\obj\Debug\App.g.cs
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\obj\Debug\Othello_MarkupCompile.cache
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\obj\Debug\Othello_MarkupCompile.lref
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\obj\Debug\MainWindow.baml
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\obj\Debug\Othello.g.resources
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\obj\Debug\Othello.Properties.Resources.resources
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\obj\Debug\Othello.csproj.GenerateResource.cache
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\obj\Debug\Othello.csproj.CoreCompileInputs.cache
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\obj\Debug\Othello.csproj.CopyComplete
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\obj\Debug\Othello.exe
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\obj\Debug\Othello.pdb

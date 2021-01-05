@@ -1,0 +1,26 @@
+C:\DEV\DOTNET\Othello\OthelloAI_OHU\obj\Debug\OthelloAI_OHU.csprojAssemblyReference.cache
+C:\DEV\DOTNET\Othello\OthelloAI_OHU\obj\Debug\OthelloAI_OHU.csproj.CoreCompileInputs.cache
+C:\DEV\DOTNET\Othello\TournamentApp\OthelloAI_OHU\bin\Debug\OthelloAI_OHU.dll
+C:\DEV\DOTNET\Othello\TournamentApp\OthelloAI_OHU\bin\Debug\OthelloAI_OHU.pdb
+C:\DEV\DOTNET\Othello\TournamentApp\OthelloAI_OHU\bin\Debug\IPlayable.dll
+C:\DEV\DOTNET\Othello\TournamentApp\OthelloAI_OHU\obj\Debug\OthelloAI_OHU.csproj.CoreCompileInputs.cache
+C:\DEV\DOTNET\Othello\TournamentApp\OthelloAI_OHU\obj\Debug\OthelloAI_OHU.csproj.CopyComplete
+C:\DEV\DOTNET\Othello\TournamentApp\OthelloAI_OHU\obj\Debug\OthelloAI_OHU.dll
+C:\DEV\DOTNET\Othello\TournamentApp\OthelloAI_OHU\obj\Debug\OthelloAI_OHU.pdb
+C:\DEV\DOTNET\Othello\TournamentApp\bin\Debug\OthelloAI_OHU.dll
+C:\DEV\DOTNET\Othello\TournamentApp\bin\Debug\OthelloAI_OHU.pdb
+C:\DEV\DOTNET\Othello\TournamentApp\OthelloAI_OHU\obj\Debug\OthelloAI_OHU.csprojAssemblyReference.cache
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\bin\Debug\OthelloAI_OHU.dll
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\bin\Debug\OthelloAI_OHU.pdb
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\OthelloAI_OHU\obj\Debug\OthelloAI_OHU.csprojAssemblyReference.cache
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\OthelloAI_OHU\obj\Debug\OthelloAI_OHU.csproj.CoreCompileInputs.cache
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\OthelloAI_OHU\obj\Debug\OthelloAI_OHU.csproj.CopyComplete
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\OthelloAI_OHU\obj\Debug\OthelloAI_OHU.dll
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\OthelloAI_OHU\obj\Debug\OthelloAI_OHU.pdb
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\bin\Debug\OthelloAI_OHU.dll
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\bin\Debug\OthelloAI_OHU.pdb
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\OthelloAI_OHU\obj\Debug\OthelloAI_OHU.csprojAssemblyReference.cache
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\OthelloAI_OHU\obj\Debug\OthelloAI_OHU.csproj.CoreCompileInputs.cache
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\OthelloAI_OHU\obj\Debug\OthelloAI_OHU.csproj.CopyComplete
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\OthelloAI_OHU\obj\Debug\OthelloAI_OHU.dll
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\OthelloAI_OHU\obj\Debug\OthelloAI_OHU.pdb

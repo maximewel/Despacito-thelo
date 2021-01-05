@@ -1,0 +1,49 @@
+C:\Temp\DOTNET_OTHELLO\TEST_OTHELLO\ClassLibrary1\bin\Debug\ClassLibrary1.dll
+C:\Temp\DOTNET_OTHELLO\TEST_OTHELLO\ClassLibrary1\bin\Debug\ClassLibrary1.pdb
+C:\Temp\DOTNET_OTHELLO\TEST_OTHELLO\ClassLibrary1\bin\Debug\IPlayable.dll
+C:\Temp\DOTNET_OTHELLO\TEST_OTHELLO\ClassLibrary1\bin\Debug\IPlayable.pdb
+C:\Temp\DOTNET_OTHELLO\TEST_OTHELLO\ClassLibrary1\obj\Debug\ClassLibrary1.dll
+C:\Temp\DOTNET_OTHELLO\TEST_OTHELLO\ClassLibrary1\obj\Debug\ClassLibrary1.pdb
+C:\Temp\DOTNET_OTHELLO\TEST_OTHELLO\ClassLibrary1\obj\Debug\ControllerOthello.csprojResolveAssemblyReference.cache
+C:\DEV\DOTNET\Othello\OthelloConsole\TEST_OTHELLO\ClassLibrary1\bin\Debug\ClassLibrary1.dll
+C:\DEV\DOTNET\Othello\OthelloConsole\TEST_OTHELLO\ClassLibrary1\bin\Debug\ClassLibrary1.pdb
+C:\DEV\DOTNET\Othello\OthelloConsole\TEST_OTHELLO\ClassLibrary1\bin\Debug\IPlayable.dll
+C:\DEV\DOTNET\Othello\OthelloConsole\TEST_OTHELLO\ClassLibrary1\bin\Debug\IPlayable.pdb
+C:\DEV\DOTNET\Othello\OthelloConsole\TEST_OTHELLO\ClassLibrary1\obj\Debug\ControllerOthello.csprojAssemblyReference.cache
+C:\DEV\DOTNET\Othello\OthelloConsole\TEST_OTHELLO\ClassLibrary1\obj\Debug\ControllerOthello.csproj.CoreCompileInputs.cache
+C:\DEV\DOTNET\Othello\OthelloConsole\TEST_OTHELLO\ClassLibrary1\obj\Debug\ControllerOthello.csproj.CopyComplete
+C:\DEV\DOTNET\Othello\OthelloConsole\TEST_OTHELLO\ClassLibrary1\obj\Debug\ClassLibrary1.dll
+C:\DEV\DOTNET\Othello\OthelloConsole\TEST_OTHELLO\ClassLibrary1\obj\Debug\ClassLibrary1.pdb
+C:\DEV\DOTNET\Othello\OthelloConsole_7x9\TEST_OTHELLO\ClassLibrary1\bin\Debug\IPlayable.dll
+C:\DEV\DOTNET\Othello\OthelloConsole_7x9\TEST_OTHELLO\ClassLibrary1\bin\Debug\IPlayable.pdb
+C:\DEV\DOTNET\Othello\OthelloConsole_7x9\TEST_OTHELLO\ClassLibrary1\obj\Debug\ControllerOthello.csproj.CoreCompileInputs.cache
+C:\DEV\DOTNET\Othello\OthelloConsole_7x9\TEST_OTHELLO\ClassLibrary1\obj\Debug\ControllerOthello.csproj.CopyComplete
+C:\DEV\DOTNET\Othello\OthelloConsole_7x9\TEST_OTHELLO\ClassLibrary1\bin\Debug\ArcOthelloRef.dll
+C:\DEV\DOTNET\Othello\OthelloConsole_7x9\TEST_OTHELLO\ClassLibrary1\bin\Debug\ArcOthelloRef.pdb
+C:\DEV\DOTNET\Othello\OthelloConsole_7x9\TEST_OTHELLO\ClassLibrary1\obj\Debug\ArcOthelloRef.dll
+C:\DEV\DOTNET\Othello\OthelloConsole_7x9\TEST_OTHELLO\ClassLibrary1\obj\Debug\ArcOthelloRef.pdb
+C:\DEV\DOTNET\Othello\TournamentApp\ControllerArcOthello\bin\Debug\ArcOthelloRef.dll
+C:\DEV\DOTNET\Othello\TournamentApp\ControllerArcOthello\bin\Debug\ArcOthelloRef.pdb
+C:\DEV\DOTNET\Othello\TournamentApp\ControllerArcOthello\bin\Debug\IPlayable.dll
+C:\DEV\DOTNET\Othello\TournamentApp\ControllerArcOthello\bin\Debug\IPlayable.pdb
+C:\DEV\DOTNET\Othello\TournamentApp\ControllerArcOthello\obj\Debug\ControllerOthello.csproj.CoreCompileInputs.cache
+C:\DEV\DOTNET\Othello\TournamentApp\ControllerArcOthello\obj\Debug\ControllerOthello.csproj.CopyComplete
+C:\DEV\DOTNET\Othello\TournamentApp\ControllerArcOthello\obj\Debug\ArcOthelloRef.dll
+C:\DEV\DOTNET\Othello\TournamentApp\ControllerArcOthello\obj\Debug\ArcOthelloRef.pdb
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\ControllerArcOthello\bin\Debug\ArcOthelloRef.dll
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\ControllerArcOthello\bin\Debug\ArcOthelloRef.pdb
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\ControllerArcOthello\bin\Debug\IPlayable.dll
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\ControllerArcOthello\bin\Debug\IPlayable.pdb
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\ControllerArcOthello\obj\Debug\ControllerOthello.csprojAssemblyReference.cache
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\ControllerArcOthello\obj\Debug\ControllerOthello.csproj.CoreCompileInputs.cache
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\ControllerArcOthello\obj\Debug\ControllerOthello.csproj.CopyComplete
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\ControllerArcOthello\obj\Debug\ArcOthelloRef.dll
+C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\ControllerArcOthello\obj\Debug\ArcOthelloRef.pdb
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\ControllerArcOthello\bin\Debug\ArcOthelloRef.dll
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\ControllerArcOthello\bin\Debug\ArcOthelloRef.pdb
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\ControllerArcOthello\bin\Debug\IPlayable.pdb
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\ControllerArcOthello\obj\Debug\ControllerOthello.csprojAssemblyReference.cache
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\ControllerArcOthello\obj\Debug\ControllerOthello.csproj.CoreCompileInputs.cache
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\ControllerArcOthello\obj\Debug\ControllerOthello.csproj.CopyComplete
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\ControllerArcOthello\obj\Debug\ArcOthelloRef.dll
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\ControllerArcOthello\obj\Debug\ArcOthelloRef.pdb
