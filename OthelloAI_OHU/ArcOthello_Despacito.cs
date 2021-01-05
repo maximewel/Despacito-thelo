@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OthelloAI_OHU
+namespace OthelloAI_Despacito
 {
     // Tile states
     public enum TileState
@@ -14,21 +14,21 @@ namespace OthelloAI_OHU
         BLACK = 1
     }
 
-    public class OthelloBoard_OHU : IPlayable.IPlayable
+    public class OthelloBoard_Despacito : IPlayable.IPlayable
     {
         const int BOARDSIZE_X = 9;
         const int BOARDSIZE_Y = 7;
 
-        int[,] theBoard = new int[BOARDSIZE_X, BOARDSIZE_Y];
+        int[,] gameBoard = new int[BOARDSIZE_X, BOARDSIZE_Y];
         int whiteScore = 0;
         int blackScore = 0;
         public bool GameFinish { get; set; }
 
         private Random rnd = new Random();
 
-        public OthelloBoard_OHU()
+        public OthelloBoard_Despacito()
         {
-            initBoard();
+            InitBoard();
         }
 
 
@@ -41,7 +41,7 @@ namespace OthelloAI_OHU
                 Console.Write($"{(line + 1)}");
                 for (int col = 0; col < BOARDSIZE_X; col++)
                 {
-                    Console.Write((theBoard[col, line] == (int)TileState.EMPTY) ? " -" : (theBoard[col, line] == (int)TileState.WHITE) ? " O" : " X");
+                    Console.Write((gameBoard[col, line] == (int)TileState.EMPTY) ? " -" : (gameBoard[col, line] == (int)TileState.WHITE) ? " O" : " X");
                 }
                 Console.Write("\n");
             }
@@ -59,13 +59,85 @@ namespace OthelloAI_OHU
         /// <returns></returns>
         public int[,] GetBoard()
         {
-            return (int[,])theBoard;
+            return (int[,])gameBoard;
         }
+
+        #region MinMax
+
+        /**
+         * Return the next best possible move using min_max algorithm and the alpha-beta optimisation
+         */
+        private (int, (int, int)?) MinMax(int[,] field, int depth, int minOrMax, int parentValue, bool isWhite)
+        {
+            //stopping conditions
+            if(depth == 0 || IsFinished(isWhite, field))
+                return (Heuristic(field, isWhite), null);
+
+            int optimalValue = int.MinValue * minOrMax;
+            (int, int)? optimalMove = null;
+
+            Console.WriteLine($"Searching best move whith max = {minOrMax} at dept {depth}...");
+            //Iterate over each possible move for that field
+            foreach(var move in this.GetPossibleMove(isWhite, field))
+            {
+                //Create an identical field
+                int[,] playedField = (int[,]) field.Clone();
+                //Play the move on this field
+                this.PlayMove(move, isWhite, playedField);
+                var result = MinMax(playedField, depth-1, -minOrMax, optimalValue, !isWhite);
+                int val = result.Item1; 
+                Console.WriteLine($"found value : {val}");
+                if (val * minOrMax > optimalValue * minOrMax)
+                {
+                    Console.WriteLine($"kept value as best");
+                    optimalValue = val;
+                    optimalMove = move;
+                    //Pruning of the tree
+                    if (optimalValue * minOrMax > parentValue * minOrMax) { }
+                        //break;
+                }
+            }
+            return (optimalValue, optimalMove);
+        }
+
+        /**
+         * Evaluate the given field
+         */
+        private int Heuristic(int[,] field, bool isWhite)
+        {
+            return CountPions(field, isWhite);
+        }
+
+        private int CountPions(int[,] field, bool isWhite)
+        {
+            TileState player = isWhite ? TileState.WHITE : TileState.BLACK;
+            TileState opponent = !isWhite ? TileState.WHITE : TileState.BLACK;
+            int count = 0;
+            foreach(var elem in field)
+            {
+                if (elem == (int)player)
+                    count++;
+                else if (elem == (int)opponent)
+                    count--;
+            }
+            return count;
+        }
+
+        /**
+         * Return wether a field is still playable or not
+         */
+        private bool IsFinished(bool isWhite, int[,] field)
+        {
+            //TODO
+            return GetPossibleMove(isWhite, field).Count <= 0;
+        }
+
+        #endregion
 
         #region IPlayable
         public int GetWhiteScore() { return whiteScore; }
         public int GetBlackScore() { return blackScore; }
-        public string GetName() { return "OHU greedy"; }
+        public string GetName() { return "🎵🤘🎸🌮🌮Despacito'thello🌮🌮🎸🤘🎵"; }
 
         /// <summary>
         /// Maximizes the number of flipped slots at each move
@@ -76,28 +148,19 @@ namespace OthelloAI_OHU
         /// <returns>The move it will play, will return {P,0} if it has to PASS its turn (no move is possible)</returns>
         public Tuple<int, int> GetNextMove(int[,] game, int level, bool whiteTurn)
         {
-            Tuple<int, int> nextMove = null;
-            List<Tuple<int, int>> possibleMoves = GetPossibleMove(whiteTurn);
-            if (possibleMoves.Count == 0)
-                return new Tuple<int, int>(-1, -1);
-            else  // do a greedy search (finds the move that flips the maximum number of slots)
+            (int, (int,int)?) results = MinMax(gameBoard, 3, 1, int.MaxValue, whiteTurn);
+            (int, int)? move = results.Item2;
+            if (move.HasValue)
             {
-                int maxFlip = 0;
-                foreach (var m in possibleMoves)
-                {
-                    int flipNb = GetFlipNumber(m.Item1, m.Item2, whiteTurn);
-                    if (flipNb > maxFlip)
-                    {
-                        maxFlip = flipNb;
-                        nextMove = m;
-                    }
-                }
-            }
-            return nextMove;
+                Console.WriteLine($"Found optimal value {results.Item1} with move {move.Value}");
+                return Tuple.Create(move.Value.Item1, move.Value.Item2);
+            }  else
+                return Tuple.Create(-1, -1);
         }
 
-        public bool PlayMove(int column, int line, bool isWhite)
+        public bool PlayMove((int, int) move, bool isWhite, int[,] field)
         {
+            int column = move.Item1, line = move.Item2;
             //0. Verify if indices are valid
             if ((column < 0) || (column >= BOARDSIZE_X) || (line < 0) || (line >= BOARDSIZE_Y))
                 return false;
@@ -119,21 +182,21 @@ namespace OthelloAI_OHU
                     c = column + dCol;
                     l = line + dLine;
                     if ((c < BOARDSIZE_X) && (c >= 0) && (l < BOARDSIZE_Y) && (l >= 0)
-                        && (theBoard[c, l] == (int)opponent))
+                        && (field[c, l] == (int)opponent))
                     // Verify if there is a friendly tile to "pinch" and return ennemy tiles in this direction
                     {
                         int counter = 0;
                         while (((c + dCol) < BOARDSIZE_X) && (c + dCol >= 0) &&
                                   ((l + dLine) < BOARDSIZE_Y) && ((l + dLine >= 0))
-                                   && (theBoard[c, l] == (int)opponent)) // pour éviter les trous
+                                   && (field[c, l] == (int)opponent)) // pour éviter les trous
                         {
                             c += dCol;
                             l += dLine;
                             counter++;
-                            if (theBoard[c, l] == (int)ownColor)
+                            if (field[c, l] == (int)ownColor)
                             {
                                 playable = true;
-                                theBoard[column, line] = (int)ownColor;
+                                field[column, line] = (int)ownColor;
                                 catchDirections.Add(new Tuple<int, int, int>(dCol, dLine, counter));
                             }
                         }
@@ -150,12 +213,18 @@ namespace OthelloAI_OHU
                 {
                     c += v.Item1;
                     l += v.Item2;
-                    theBoard[c, l] = (int)ownColor;
+                    field[c, l] = (int)ownColor;
                 }
             }
             //Console.WriteLine("CATCH DIRECTIONS:" + catchDirections.Count);
-            computeScore();
+            ComputeScore();
             return playable;
+        }
+
+        //Function that satisfies the interface IsPlayable
+        public bool PlayMove(int column, int line, bool isWhite)
+        {
+            return this.PlayMove((column, line), isWhite, gameBoard);
         }
 
         /// <summary>
@@ -164,15 +233,12 @@ namespace OthelloAI_OHU
         /// <param name=""></param>
         /// <param name="isWhite"></param>
         /// <returns></returns>
-        public bool IsPlayable(Tuple<int, int> move, bool isWhite)
+        public bool IsPlayable((int, int) move, bool isWhite, int[,] field)
         {
-            return IsPlayable(move.Item1, move.Item2, isWhite);
-        }
-
-        public bool IsPlayable(int column, int line, bool isWhite)
-        {
+            //retrieve tuple values
+            int column = move.Item1, line = move.Item2;
             //1. Verify if the tile is empty !
-            if (theBoard[column, line] != (int)TileState.EMPTY)
+            if (field[column, line] != (int)TileState.EMPTY)
                 return false;
             //2. Verify if at least one adjacent tile has an opponent tile
             TileState opponent = isWhite ? TileState.BLACK : TileState.WHITE;
@@ -187,7 +253,7 @@ namespace OthelloAI_OHU
                     c = column + dCol;
                     l = line + dLine;
                     if ((c < BOARDSIZE_X) && (c >= 0) && (l < BOARDSIZE_Y) && (l >= 0)
-                        && (theBoard[c, l] == (int)opponent))
+                        && (field[c, l] == (int)opponent))
                     // Verify if there is a friendly tile to "pinch" and return ennemy tiles in this direction
                     {
                         int counter = 0;
@@ -197,14 +263,14 @@ namespace OthelloAI_OHU
                             c += dCol;
                             l += dLine;
                             counter++;
-                            if (theBoard[c, l] == (int)ownColor)
+                            if (field[c, l] == (int)ownColor)
                             {
                                 playable = true;
                                 break;
                             }
-                            else if (theBoard[c, l] == (int)opponent)
+                            else if (field[c, l] == (int)opponent)
                                 continue;
-                            else if (theBoard[c, l] == (int)TileState.EMPTY)
+                            else if (field[c, l] == (int)TileState.EMPTY)
                                 break;  //empty slot ends the search
                         }
                     }
@@ -213,9 +279,15 @@ namespace OthelloAI_OHU
             return playable;
         }
 
+        public bool IsPlayable(int column, int line, bool isWhite)
+        {
+            return this.IsPlayable((column, line), isWhite, gameBoard);
+        }
+
+       
         public int GetFlipNumber(int column, int line, bool isWhite)
         {
-            if (theBoard[column, line] != (int)TileState.EMPTY)
+            if (gameBoard[column, line] != (int)TileState.EMPTY)
                 return 0;
             TileState opponent = isWhite ? TileState.BLACK : TileState.WHITE;
             TileState ownColor = (!isWhite) ? TileState.BLACK : TileState.WHITE;
@@ -230,7 +302,7 @@ namespace OthelloAI_OHU
                     c = column + dCol;
                     l = line + dLine;
                     if ((c < BOARDSIZE_X) && (c >= 0) && (l < BOARDSIZE_Y) && (l >= 0)
-                        && (theBoard[c, l] == (int)opponent))
+                        && (gameBoard[c, l] == (int)opponent))
                     // Verify if there is a friendly tile to "pinch" and return ennemy tiles in this direction
                     {
                         counter = 0;
@@ -240,14 +312,14 @@ namespace OthelloAI_OHU
                             c += dCol;
                             l += dLine;
                             counter++;
-                            if (theBoard[c, l] == (int)ownColor)
+                            if (gameBoard[c, l] == (int)ownColor)
                             {
                                 playable = true;
                                 break;
                             }
-                            else if (theBoard[c, l] == (int)opponent)
+                            else if (gameBoard[c, l] == (int)opponent)
                                 continue;
-                            else if (theBoard[c, l] == (int)TileState.EMPTY)
+                            else if (gameBoard[c, l] == (int)TileState.EMPTY)
                                 break;  //empty slot ends the search
                         }
                     }
@@ -258,28 +330,6 @@ namespace OthelloAI_OHU
 
         #endregion
 
-        /// <summary>
-        /// Returns all the playable moves in a human readable way (e.g. "G3")
-        /// </summary>
-        /// <param name="v"></param>
-        /// <param name="whiteTurn"></param>
-        /// <returns></returns>
-        public List<Tuple<char, int>> GetPossibleMoves(bool whiteTurn, bool show = false)
-        {
-            char[] colonnes = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
-            List<Tuple<char, int>> possibleMoves = new List<Tuple<char, int>>();
-            for (int i = 0; i < BOARDSIZE_X; i++)
-                for (int j = 0; j < BOARDSIZE_Y; j++)
-                {
-                    if (IsPlayable(i, j, whiteTurn))
-                    {
-                        possibleMoves.Add(new Tuple<char, int>(colonnes[i], j + 1));
-                        if (show == true)
-                            Console.Write((colonnes[i]).ToString() + (j + 1).ToString() + ", ");
-                    }
-                }
-            return possibleMoves;
-        }
 
         /// <summary>
         /// Returns all the playable moves in a computer readable way (e.g. "<3, 0>")
@@ -287,42 +337,40 @@ namespace OthelloAI_OHU
         /// <param name="v"></param>
         /// <param name="whiteTurn"></param>
         /// <returns></returns>
-        public List<Tuple<int, int>> GetPossibleMove(bool whiteTurn, bool show = false)
+        public List<(int, int)> GetPossibleMove(bool whiteTurn, int[,] field)
         {
             char[] colonnes = "ABCDEFGHIJKL".ToCharArray();
-            List<Tuple<int, int>> possibleMoves = new List<Tuple<int, int>>();
+            List<(int, int)> possibleMoves = new List<(int, int)>();
             for (int i = 0; i < BOARDSIZE_X; i++)
                 for (int j = 0; j < BOARDSIZE_Y; j++)
                 {
-                    if (IsPlayable(i, j, whiteTurn))
+                    if (IsPlayable((i, j), whiteTurn, field))
                     {
-                        possibleMoves.Add(new Tuple<int, int>(i, j));
-                        if (show == true)
-                            Console.Write((colonnes[i]).ToString() + (j + 1).ToString() + ", ");
+                        possibleMoves.Add((i, j));
                     }
                 }
             return possibleMoves;
         }
 
-        private void initBoard()
+        private void InitBoard()
         {
             for (int i = 0; i < BOARDSIZE_X; i++)
                 for (int j = 0; j < BOARDSIZE_Y; j++)
-                    theBoard[i, j] = (int)TileState.EMPTY;
+                    gameBoard[i, j] = (int)TileState.EMPTY;
 
-            theBoard[3, 3] = (int)TileState.WHITE;
-            theBoard[4, 4] = (int)TileState.WHITE;
-            theBoard[3, 4] = (int)TileState.BLACK;
-            theBoard[4, 3] = (int)TileState.BLACK;
+            gameBoard[3, 3] = (int)TileState.WHITE;
+            gameBoard[4, 4] = (int)TileState.WHITE;
+            gameBoard[3, 4] = (int)TileState.BLACK;
+            gameBoard[4, 3] = (int)TileState.BLACK;
 
-            computeScore();
+            ComputeScore();
         }
 
-        private void computeScore()
+        private void ComputeScore()
         {
             whiteScore = 0;
             blackScore = 0;
-            foreach (var v in theBoard)
+            foreach (var v in gameBoard)
             {
                 if (v == (int)TileState.WHITE)
                     whiteScore++;
