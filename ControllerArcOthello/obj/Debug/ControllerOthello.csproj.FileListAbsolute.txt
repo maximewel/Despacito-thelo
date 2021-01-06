@@ -41,9 +41,8 @@ C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\ControllerArcOthello\obj\Debug
 C:\DEV\DOTNET\Othello\ArcOthello AI\TournamentApp\ControllerArcOthello\obj\Debug\ArcOthelloRef.pdb
 C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\ControllerArcOthello\bin\Debug\ArcOthelloRef.dll
 C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\ControllerArcOthello\bin\Debug\ArcOthelloRef.pdb
-C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\ControllerArcOthello\bin\Debug\IPlayable.pdb
-C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\ControllerArcOthello\obj\Debug\ControllerOthello.csprojAssemblyReference.cache
 C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\ControllerArcOthello\obj\Debug\ControllerOthello.csproj.CoreCompileInputs.cache
 C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\ControllerArcOthello\obj\Debug\ControllerOthello.csproj.CopyComplete
 C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\ControllerArcOthello\obj\Debug\ArcOthelloRef.dll
 C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\ControllerArcOthello\obj\Debug\ArcOthelloRef.pdb
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\ControllerArcOthello\obj\Debug\ControllerOthello.csprojAssemblyReference.cache

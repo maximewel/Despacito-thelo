@@ -279,7 +279,6 @@ namespace Othello
         private bool IsGameFinished()
         {
             return (!CanPlayerPlay(playerTurn) && !CanPlayerPlay(playerTurn + 1))
-                //|| logicBoard.Board.Cast<Pawn>().ToList().Count(p => p == null) == 0 
                  || whitePlayer.TotalSecondsLeft <= 0 || blackPlayer.TotalSecondsLeft <=0 ;
         }
 

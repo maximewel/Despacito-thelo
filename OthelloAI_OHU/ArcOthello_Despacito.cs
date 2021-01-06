@@ -23,13 +23,13 @@ namespace OthelloAI_Despacito
         private bool isPlayerWhite;
         public bool GameFinish { get; set; }
 
-        public int[,] weightedBoard = { {6,-4, 2, 2, 2, 2, 2, -4, 6},
-                                        {-4,-6,-1,-1,-1,-1,-1,-6, -4},
-                                        {2,-1, 1, 0, 0, 1, 2, -1, 2},
-                                        {2,-1, 0, 1, 1, 0, 2, -1, 2},
-                                        {2,-1, 0, 1, 1, 0, 2, -1, 2},
-                                        {-4,-6,-1,-1,-1,-1,-1,-6,-4},
-                                        {6,-4, 2, 2, 2, 2, 2, -4, 6}};
+        public int[,] weightedBoard = { {10,-8, 4, 3, 2, 3, 4, -8, 10},
+                                        {-8,-8,-1,-1,-1,-1,-1,-8, -8},
+                                        {4,-1, 1, 0, 0, 1, 2, -1, 4},
+                                        {2,-1, 0, 1, 1, -1, 2, -1, 2},
+                                        {4,-1, 0, 1, 1, -1, 2, -1, 4},
+                                        {-8,-8,-1,-1,-1,-1,-1,-8,-8},
+                                        {10,-8, 4, 3, 2, 3, 4, -8, 10}};
 
         public OthelloBoard_Despacito()
         {
@@ -59,9 +59,11 @@ namespace OthelloAI_Despacito
             //get possible moves for this field
             var moves = GetPossibleMove(isWhite, field);
 
-            //stopping conditions : no move possible, depth is 0
-            if (depth == 0 || moves.Count <= 0)
-                return (Heuristic(field, isPlayerWhite, moves), null);
+            //stopping conditions : game finished, depth is 0
+            if (moves.Count == 0 && GetPossibleMove(!isWhite, field).Count == 0)
+                return (HeuristicEndGame(field), null);
+            if (depth == 0)
+                return (Heuristic(field, isWhite, moves), null);
 
             //init optimal values kept in memory for alpha-beta and min-max algorithm
             int optimalValue = int.MinValue * minOrMax;
@@ -73,6 +75,7 @@ namespace OthelloAI_Despacito
                 //Create an identical field
                 int[,] playedField = (int[,]) field.Clone();
                 //Play the move on this field
+
                 PlayMove(move, isWhite, playedField);
                 var result = MinMax(playedField, depth-1, -minOrMax, optimalValue, !isWhite);
                 int val = result.Item1; 
@@ -93,8 +96,50 @@ namespace OthelloAI_Despacito
          */
         private int Heuristic(int[,] field, bool isWhite, List<(int, int)> moves)
         {
-            return HeuristicStaticWeightedBoard(field);
+            int boardValue = HeuristicStaticWeightedBoard(field);
+            int mobility = HeuristicMobility(field, isWhite, moves);
+            int mobilityWeighted = (int)(mobility * boardValue / 100.0);
+            return boardValue + mobilityWeighted;
         }
+
+        private void PrintField(int[,] arr)
+        {
+            var rowCount = arr.GetLength(0);
+            var colCount = arr.GetLength(1);
+            for (int row = 0; row < rowCount; row++)
+            {
+                for (int col = 0; col < colCount; col++)
+                    Console.Write(String.Format("{0}\t", arr[row, col]));
+                Console.WriteLine();
+            }
+        }
+
+        /// <summary>
+        /// Heuristic used to count if the game will be won or lost in case of end game
+        /// </summary>
+        /// <param name="field"></param>
+        /// <returns>+/- infinity (as int.max/minValue) to indicate win or loose. 0 if draw.</returns>
+        private int HeuristicEndGame(int[,] field)
+        {
+            //init counting variables
+            int count = 0;
+            TileState player = isPlayerWhite ? TileState.WHITE : TileState.BLACK;
+            TileState opponent = isPlayerWhite ? TileState.BLACK : TileState.WHITE;
+            //do a simple, basic count of pions
+            foreach (var elem in field)
+            {
+                if (elem == (int)player)
+                    count++;
+                else if (elem == (int)opponent)
+                    count--;
+            }
+            //draw
+            if (count == 0)
+                return 0;
+            //win/loose
+            return count > 0 ? int.MaxValue/2 : int.MinValue/2;
+        }
+
 
         private int HeuristicCorners(int[,] field)
         {
@@ -114,11 +159,6 @@ namespace OthelloAI_Despacito
             return 100 * (maxPlayer - minPlayer) / (maxPlayer + minPlayer);
         }
 
-        private int HeuristicBorders(int[,] field)
-        {
-            return 0;
-        }
-
         private int HeuristicStaticWeightedBoard(int[,] field)
         {
             int sum = 0;
@@ -132,16 +172,17 @@ namespace OthelloAI_Despacito
                     sum += weightedBoard[y, x] * vals[field[x, y]+1];
                 }
             }
-
             return sum;
         }
 
-        private int HeuristicMobility(int[,] field, List<(int, int)> moves)
+        private int HeuristicMobility(int[,] field, bool isWhite, List<(int, int)> moves)
         {
-            int maxPlayer = moves.Count;
-            int minPlayer = GetPossibleMove(!isPlayerWhite, field).Count;
+            int IsMaxFactor = isWhite == isPlayerWhite ? 1 : -1;
+
+            int maxPlayer = moves.Count * IsMaxFactor;
+            int minPlayer = GetPossibleMove(!isWhite, field).Count * IsMaxFactor;
             if ((maxPlayer + minPlayer) == 0) return 0;
-            return 100 * (maxPlayer - minPlayer) / (maxPlayer + minPlayer);
+            return (int)Math.Round(100 * ((double)(maxPlayer - minPlayer) / (double)(maxPlayer + minPlayer)));
         }
 
         private int CountParity(int[,] field)
@@ -167,10 +208,10 @@ namespace OthelloAI_Despacito
         #region IPlayable
         public int GetWhiteScore() { return whiteScore; }
         public int GetBlackScore() { return blackScore; }
-        public string GetName() { return "🎵🤘🎸🌮🌮Despacito'thello2🌮🌮🎸🤘🎵"; }
+        public string GetName() { return "🎵🤘🎸🌮🌮Despacito'thello🌮🌮🎸🤘🎵"; }
 
         /// <summary>
-        /// Maximizes the number of flipped slots at each move
+        /// Call the MinMax method
         /// </summary>
         /// <param name="game"></param>
         /// <param name="level"></param>
@@ -181,6 +222,7 @@ namespace OthelloAI_Despacito
             isPlayerWhite = whiteTurn;
             (int, (int,int)?) results = MinMax(gameBoard, level, 1, int.MaxValue, whiteTurn);
             (int, int)? move = results.Item2;
+            Console.WriteLine($"found best value at : {results.Item1}");
             if (move.HasValue)
                 return Tuple.Create(move.Value.Item1, move.Value.Item2);
             //no value : Pass turn

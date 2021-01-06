@@ -92,7 +92,6 @@ C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\bin\Debu
 C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\bin\Debug\Othello.pdb
 C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\bin\Debug\ArcOthelloRef.dll
 C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\bin\Debug\ArcOthelloRef.pdb
-C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\bin\Debug\IPlayable.pdb
 C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\obj\Debug\Othello.csprojAssemblyReference.cache
 C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\obj\Debug\MainWindow.g.cs
 C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\obj\Debug\App.g.cs
