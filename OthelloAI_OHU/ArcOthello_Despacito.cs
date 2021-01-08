@@ -23,6 +23,8 @@ namespace OthelloAI_Despacito
         private bool isPlayerWhite;
         public bool GameFinish { get; set; }
 
+        private Random rand = new Random();
+        private int LATEGAME_EMPTY_TRESHOLD = (int) (0.10 * (BOARDSIZE_X * BOARDSIZE_Y)); //<15% empty -> late game
         private static readonly int[,] weightedBoard = { 
                                         {20,-4, 4, 3, 2, 3, 4, -4, 20},
                                         {-4,-5,-1,-1,-1,-1,-1,-5, -4},
@@ -53,81 +55,120 @@ namespace OthelloAI_Despacito
 
         #region MinMax
 
-        /**
-         * Return the next best possible move using min_max algorithm and the alpha-beta optimisation
-         */
+        /// <summary>
+        /// Recusrive function. Min max algorithm : uses itself to play @level rounds and find the best move amongst them
+        /// </summary>
+        /// <param name="field">the feld</param>
+        /// <param name="depth">number of rounds to play</param>
+        /// <param name="minOrMax">Wether this node is trying to maximize or minimize</param>
+        /// <param name="parentValue">the current value of the parent (alpha-beta)</param>
+        /// <param name="whiteTurn">wether this is white player's turn</param>
+        /// <returns>the optimal value and its associated move</returns>
         private (int, (int, int)?) MinMax(int[,] field, int depth, int minOrMax, int? parentValue, bool whiteTurn)
         {
-            //get possible moves for this field and player
-            var moves = GetPossibleMove(whiteTurn, field);
+            //get possible moves for this field and player/opponent (to avoid multiple calculations)
+            var movesPlayer = GetPossibleMove(whiteTurn, field);
+            var movesOpponent = GetPossibleMove(!whiteTurn, field);
 
-            //stopping conditions : game finished, depth is 0
+            //stopping conditions : game finished, depth is 0. return relevant heuristic
             if (depth == 0)
-                return (Heuristic(field, whiteTurn, moves), null);
+            {
+                if (movesPlayer.Count == 0 && movesOpponent.Count == 0)
+                    return (HeuristicEndGame(field), null);
+                else
+                    return (Heuristic(field, whiteTurn), null);
+            }
 
-            if (moves.Count == 0)
+            //special case : this player can not play.
+            if (movesPlayer.Count == 0)
             {
                 if(GetPossibleMove(!whiteTurn, field).Count == 0)
-                    return (Heuristic(field, whiteTurn, moves), null); //end of game detected
+                    return (HeuristicEndGame(field), null); //end of game detected
                 else
-                    return MinMax(field, depth-1, -minOrMax, parentValue, !whiteTurn); //simulate "pass turn"
+                    return MinMax(field, depth, -minOrMax, parentValue, !whiteTurn); //simulate "pass turn"
             }
 
             //init optimal values kept in memory for alpha-beta and min-max algorithm
-            int optimalValue = int.MinValue+10 * minOrMax;
+            int optimalValue = int.MinValue+100 * minOrMax; //+100 to avoid overflow !
             (int, int)? optimalMove = null;
+            double optimalMobility = -1.0;
 
-            Console.WriteLine($"Analysing dept {depth}");
             //Iterate over each possible move for that field
-            foreach (var move in moves)
+            foreach (var move in movesPlayer)
             {
                 //Create an identical field
                 int[,] playedField = (int[,]) field.Clone();
-                //Play the move on this field
-
+                //Play the move on this field, calculate its value using recursive minmax
                 PlayMove(move, whiteTurn, playedField);
                 var result = MinMax(playedField, depth-1, -minOrMax, optimalValue, !whiteTurn);
-                int val = result.Item1; 
-                if (val * minOrMax > optimalValue * minOrMax)
+                int val = result.Item1;
+                //check if it is better
+                double mobility = HeuristicMobility(field);
+                if ((val * minOrMax > optimalValue * minOrMax) || (val == optimalValue && mobility > optimalMobility))
                 {
-                    Console.WriteLine($"dept {depth} minmaxing: {minOrMax==1} found better value {val}");
                     optimalValue = val;
                     optimalMove = move;
+                    optimalMobility = mobility;
                     //Pruning of the tree
-                    if (parentValue.HasValue)
-                        if (optimalValue * minOrMax > parentValue * minOrMax)
-                            break;
+                    if (parentValue.HasValue && (optimalValue * minOrMax > parentValue * minOrMax))
+                        break;
                 }
             }
-            Console.WriteLine($"found optimal move during max : {minOrMax} at depth {depth} with {optimalValue}");
+            //return the worst/best one !
             return (optimalValue, optimalMove);
         }
 
-        /**
-         * Evaluate the given field
-         */
-        private int Heuristic(int[,] field, bool isWhite, List<(int, int)> moves)
+        /// <summary>
+        /// Evaluate the given field
+        /// </summary>
+        /// <param name="field">field to evaluate</param>
+        /// <param name="isWhite">wether this is white player's move</param>
+        /// <returns>the evaluation for this field</returns>
+        private int Heuristic(int[,] field, bool isWhite)
         {
-            //end game : Return a simple "win or loose" heuristics
-            if (moves.Count == 0 && GetPossibleMove(!isWhite, field).Count == 0)
-                return HeuristicEndGame(field);
+            //start by defining a static base value and the factors to give to the dynamic values
+            int baseValue;
+            int mobFactor, parityFactor, borderFactor, cornerFactor;
+            if (IsLateGame(field))
+            {
+                baseValue = 10000;
+                (mobFactor, cornerFactor, borderFactor, parityFactor) = (10, 0, 0, 100);
+            }
+            else
+            {
+                baseValue = HeuristicStaticWeightedBoard(field);
+                (mobFactor, cornerFactor, borderFactor, parityFactor) = (100, 100, 20, 1);
+            }
 
-            //start by defining a board value
-            int boardValue = HeuristicStaticWeightedBoard(field);
-
-            int mobFactor = 30, parityFactor = 10, borderFactor = 50, cornerFactor = 60;
-
-            //calcul some intermediate boosting factors
-            double mobility = HeuristicMobility(field, isWhite) * mobFactor;
+            //calcul all the dynamic values multiplied by their factors
+            double mobility = HeuristicMobility(field) * mobFactor;
             double parity = CountParity(field) * parityFactor;
             double borders = HeuristicBorders(field) * borderFactor;
             double corners = HeuristicCorners(field) * cornerFactor;
+            //calculate the total normalized factor and its final boosting value
             double totalFactor = (mobility + borders + corners + parity) / (double)(mobFactor + parityFactor + borderFactor + cornerFactor);
-            int totalBooster = (int)Math.Round(totalFactor * Math.Abs(boardValue));
-            PrintField(field);
-            Console.WriteLine($"ratios : mobi {mobility} parity {parity} borders {borders} corners {corners} for a total of {totalFactor}%={totalBooster}");
+            int totalBooster = (int)Math.Round(totalFactor * Math.Abs(baseValue));
 
-            return boardValue + totalBooster;
+            return baseValue + totalBooster;
+        }
+
+        private bool IsLateGame(int[,] field)
+        {
+            return CountEmptyCells(field) <= LATEGAME_EMPTY_TRESHOLD;
+        }
+
+        private int CountEmptyCells(int[,] field)
+        {
+            int count = 0;
+            int emptyTile = (int)TileState.EMPTY;
+
+            foreach (var elem in field)
+            {
+                if (elem == emptyTile)
+                    count++;
+            }
+
+            return count;
         }
 
         private void PrintField(int[,] arr)
@@ -151,14 +192,14 @@ namespace OthelloAI_Despacito
         {
             //init counting variables
             int count = 0;
-            TileState player = isPlayerWhite ? TileState.WHITE : TileState.BLACK;
-            TileState opponent = isPlayerWhite ? TileState.BLACK : TileState.WHITE;
+            int player = (int) (isPlayerWhite ? TileState.WHITE : TileState.BLACK);
+            int opponent = (int) (isPlayerWhite ? TileState.BLACK : TileState.WHITE);
             //do a simple, basic count of pions
             foreach (var elem in field)
             {
-                if (elem == (int)player)
+                if (elem == player)
                     count++;
-                else if (elem == (int)opponent)
+                else if (elem == opponent)
                     count--;
             }
             //draw
@@ -282,7 +323,7 @@ namespace OthelloAI_Despacito
             return (double)sum / (double)(2 * field.GetLength(1));
         }
 
-        private double HeuristicMobility(int[,] field, bool whiteTurn)
+        private double HeuristicMobility(int[,] field)
         {
             //get both move count
             int player = GetPossibleMove(isPlayerWhite, field).Count;
@@ -327,8 +368,8 @@ namespace OthelloAI_Despacito
         /// <returns>The move it will play, will return {P,0} if it has to PASS its turn (no move is possible)</returns>
         public Tuple<int, int> GetNextMove(int[,] game, int level, bool whiteTurn)
         {
+            //update isPlayerWhite (Should be in a "init game", but it is not :-()
             isPlayerWhite = whiteTurn;
-            Console.WriteLine($"i am white : {whiteTurn}");
 
             //if player must pass his turn : pass turn
             if(GetPossibleMove(whiteTurn, gameBoard).Count == 0)
