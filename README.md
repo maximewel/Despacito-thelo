@@ -60,12 +60,15 @@ The dynamic analysis is done using 4 parameters of the ongoing game :
 * Parity : This is a simple count of the pawns. It is not the best parameter to observe, but it is still important - and its importance grows as the game goes on
 
 These algorithm yields a ratio c [-1;1]. These ratios are multiplied by a factor to weight them. The combined ratio is normalized, and gives a booster c [-1;1].\
-![ratios](./img/ratios.png)
+![ratios](./img/ratios.png)\
 _ratios_
 \
 \
 The problem lies within the fact that the static world has an arbitrary values, wherehas the dynamic world can be - and is effectively - normalized. The combination of the worlds is done using the static world as a __base value__, and the dynamic world as a __booster__, or __helper__, that modifies this base value - either by boosting it or by minimizing it.\
-![ratios](./img/total_ratio.png)
+\
+![ratios](./img/total_ratio.png)\
+_total booster value_
+\
 \
 The static world stays the master of the heuristic, and the dynamic functions help give an additional help. The dynamic total booster can be positive or negative, and is multiplied by the absolute value of the static board value. As such, the booster is positive if it consider the game as positive, wherehas the booster is negative if it consider the game as currently negative. As the ratio is contained between [-1;1], the booster will never transform a base value from/to positive to/from negative.
 
@@ -160,7 +163,11 @@ As the board is static, there might be some times where the value is the same. M
 * Finding a secondary determination factor
 
 Despacity uses the third method - in case of equal heuristic, the most important factor of the board, its mobility, serves as a tie-breaker.\
+\
 ![mobility](./img/mobility_determination.png)\
+_mobility as tie-breaker_
+\
+\
 Of course, this just pushes the problem one equality further - what happens when two equal-heuristic boards have an equal mobility ?\
 Getting an equal heuristic is possible, but the chances of boards having the same mobility (which is a refined factor) AND the same heuristic is vastly smaller than just having equal heuristic. If such case arrises, Despacito uses the first best mobility (it uses "<" so it favorises keeping value). Those boards would be very close anyway.
 
@@ -183,7 +190,7 @@ _overflow avoidance_
 \
 \
 The nullable value could be a good idea to avoid this problem in a cleaner way.\
-Moral of the story : if any AI has the line (minValue*-1), its min nodes are broken.
+Moral of the story : if any AI has the line (minValue*-1 or minValue*variable with variable=-1), its min nodes are broken.
 ### MinMax : Pass turn
 The last little spicy implementation detail is a plus for the AI.\
 Othello is a game that allows - and forces - a player to pass its turn if it can not play (no possible move).\
@@ -197,13 +204,18 @@ If the current player has no move to do, instead of just returning the heuristic
 * If the other player can move, it recalls MinMax without playing a move - this simulate the current player passing its turn
 
 As Despacito tries to maximize its mobility factor. Making it pass turns while minmaxing allows it to predict very good board values when it makes the opponent is forced to pass its turns... If this ability to pass turn is not built inside the minmax, then the branches where the opponent must pass turn will not yield their true value.\
+\
 There is one little trap to avoid if the "pass turn" is built in - if the immediate turn for the player is a "pass", then the minmax will pass the first depth and go through the others. It will then yield a move that is illegal, basically playing for the opponent's next turn.\The easy way to avoid that is by verifying and not firing the minmax if the turn must pass :\
 ![pass turn](./img/pass_turn_verification.png)\
 _verification of the turn passing_
 \
 \
-This simple verification is crucial to avoid illegal moves and resulting crashes. It is easier to do the verification before firing the AI rathen than verifying that the depth is not maximal before passing the turn inside the minmax function.
-
+This simple verification is crucial to avoid illegal moves and resulting crashes. It is easier to do the verification before firing the AI rathen than verifying that the depth is not maximal before passing the turn inside the minmax function.\
+When passing a turn :
+* The untouched field is given
+* The depth is not decremented as no pawn has been placed (could be open to debate)
+* the minOrMax and whiteturn are inversed, as to fire the opponent's turn
+* the parentvalue is forwarded (instead of the current optimal value that does not exist)
 
 ## Testing phase
 The testing phase has been compiled into a little [PDF report](Rapport_de_tests_DespacitoThello.pdf).\
