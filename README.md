@@ -141,5 +141,5 @@ This sections talks about the specifiities of the implementation.
 
 ### MinMax : Pass turn
 ## Testing phase
-The testing phase has been compiled into a little [PDF report]("./Rapport de tests DespacitoThello.pdf").\
+The testing phase has been compiled into a little [PDF report](Rapport_de_tests_DespacitoThello.pdf).\
 It is a suit of fights against the AIs of the precedent years to see if it could hold its own against good competitors.
