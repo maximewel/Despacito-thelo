@@ -74,16 +74,62 @@ __mobility heuristic__
 The yielded value is very simple :
 * If the player has no move, he will pass his turn - very bad, return -1
 * If the player and the opponent have no move, return 0 to avoid division by 0
-* Return the ratio (delta(move)/total(move)), wich is within our bounds.
-
+* Return the ratio (delta(move)/total(move)), which is within our bounds.
 
 #### Stability
+In Othello, a pawn is never trully "yours" - it can be flipped any time. Well, not all pawns can be : they need to be surrounded by 2 ennemy pawns to be flipped. The dangerosity to be flipped is called "pawn stability" - how much "my pawn" is this pawn ?\
+There are some complexe algorithm that look at the neighbooring of each pawn to determine their stability value. Despacito uses a more straight-forward take.\
+This strategy is composed of two sub-strategies : Corners, the most important one, and corners.
 ##### Corners
-##### Borders
-#### Parity
+The pawn at the corner of the board are literally the more stable in the game. They can never be captured from the moment they are placed. They are great indicators of the state of the game, and the best AI will fight for them.\
+The calcul of this heuristic is very simple :
+* Calculate the number of borders of the player and the opponent
+* Yields the ratio corresponding to this difference : delta(corners)/total(corners)
 
-### Late game
+![corners](./img/corners.png)\
+__corners heuristic__
+
+##### Borders
+The borders represent the horizontal & vertical bordures of the game board. These pawns are more stable than the central pawns - they can be taken only from their horizontal/vertial lines.\
+As such, having __consecutive__ pawns greatly improves the stability of these border pawns.\
+The heuristic calculate the consecutive pawns of the player and the opponent, and yields the ratio.\
+\
+![borders](./img/borders.png)\
+__Border heuristic__
+\
+\
+This function uses the horizontal and vertical subfonctions to operate. They both yield a coefficient that are equally weighted for the final value. These coefficient simply represents delta(consecutive)/total(pawns).
+#### Parity
+The parity is the least important factor at the beggining - going for the pawn count is a bad idea, the patterns are much more interesting. Nonetheless, this become a very strong factor at the end of the game, where the count of pawns is the decisive indicator of a win.\
+The parity heuristic is very simple - who has the most pawns ? And yields the delta(pawns)/total(pawns).\
+
+
+### Balancing
+Balancing the ratio is a difficult exercice. Much more difficult if we consider the possibility of changing the ratios according to the state of the game. We found this combination of ratio by trial-and-error and defined two game states :
+* The standard balance, which takes place the majority of the game, which focus on patterns
+* The late game phase, which focuses on winning the game
+
+![balance](./img/balance.png)\
+__balance factors of the game__
+\
+\
+During the greater portion of game, the base value is the static board (seen above). The ratios focus on mobility & strong stability, without forgetting borders (less important) and neglecting parity (irrelevant in early game).\
+\
+The late game phase is determing by this value :\
+![lategame](./img/lategame.png)\
+__late game treshold factor__
+\
+\
+Which means that at the end of the MinMax, when all the rounds have been played inside the AI's head and if the count of empty cells is less than this treshold, the game is considered in "lategame" phase. At this point, the static board does fixed base value is big enough to ensure that the ratios (that can be little) yields a correct integer value, and not 0 after the rounding.
+
 ### End game
+The game is considered in "end game" if the current move ends the game - which means, there is no legal moves left to the player or the opponent. This heuristic is called when the game is over with the current move, wether we are at depth 0 or not.\
+![end game call](./img/endgame_called.png)\
+__end game call__\
+\
+At this point, the game will be called either a win, a loose, or a draw. This calling __must__ override other heuristics as they are critical and final. The HeuristicEndGame assumes this responsibiltiy.\
+![end game return](./img/endgame_heur.png)\
+__end game return gargantuan values__
 
 ## Implementation specificities
 The MinMax algorithm is directly taken from the AI course pseudo-code. It is done as a single function, with a minOrMax parameter.\
