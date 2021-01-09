@@ -576,7 +576,7 @@ namespace OthelloAI_Despacito
         }
         #endregion
 
-
+        
         /// <summary>
         /// Returns all the playable moves in a computer readable way (e.g. "<3, 0>")
         /// </summary>
