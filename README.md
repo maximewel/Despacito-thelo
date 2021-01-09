@@ -133,9 +133,13 @@ __end game return gargantuan values__
 
 ## Implementation specificities
 The MinMax algorithm is directly taken from the AI course pseudo-code. It is done as a single function, with a minOrMax parameter.\
+This sections talks about the specifiities of the implementation.
 
-### alpha-beta parent value as nullable
+### alpha-beta : parent value as nullable
+
 ### Overflow avoidance
-### MinMax : Pass turn
 
+### MinMax : Pass turn
 ## Testing phase
+The testing phase has been compiled into a little [PDF report]("./Rapport de tests DespacitoThello.pdf").\
+It is a suit of fights against the AIs of the precedent years to see if it could hold its own against good competitors.
