@@ -45,3 +45,4 @@ C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\Controll
 C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\ControllerArcOthello\obj\Debug\ControllerOthello.csproj.CopyComplete
 C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\ControllerArcOthello\obj\Debug\ArcOthelloRef.dll
 C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\ControllerArcOthello\obj\Debug\ArcOthelloRef.pdb
+C:\Users\Maxime.Welcklen\source\repos\Projet IA - Othello\TournamentApp\ControllerArcOthello\obj\Debug\ControllerOthello.csprojAssemblyReference.cache
