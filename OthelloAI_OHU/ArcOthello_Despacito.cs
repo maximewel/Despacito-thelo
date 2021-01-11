@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OthelloAI_Despacito
 {
@@ -25,7 +22,6 @@ namespace OthelloAI_Despacito
 
         //added MinMax attributes
         private bool isPlayerWhite;
-        private Random rand = new Random();
         private int LATEGAME_EMPTY_TRESHOLD = (int) (0.10 * (BOARDSIZE_X * BOARDSIZE_Y)); //<10% empty -> late game
         private static readonly int[,] weightedBoard = { 
                                         {20,-4, 4, 3, 2, 3, 4, -4, 20},
@@ -35,7 +31,6 @@ namespace OthelloAI_Despacito
                                         {4,-1, 0, 1, 1, -1, 2, -1, 4},
                                         {-4,-5,-1,-1,-1,-1,-1,-5,-4},
                                         {20,-4, 4, 3, 2, 3, 4, -4, 20}};
-
 
         public OthelloBoard_Despacito()
         {
